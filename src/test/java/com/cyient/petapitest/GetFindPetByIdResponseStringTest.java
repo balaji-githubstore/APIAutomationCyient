@@ -1,8 +1,8 @@
-package com.cyient.apitest;
+package com.cyient.petapitest;
 
 import io.restassured.RestAssured;
 
-public class GetFindPetByIdTest {
+public class GetFindPetByIdResponseStringTest {
 	
 	public static String baseUrl="https://petstore.swagger.io/v2/"; //endpoint
 
@@ -12,11 +12,14 @@ public class GetFindPetByIdTest {
 		String resource="pet/"+id;
 		System.out.println(baseUrl+resource);
 		
-		
-		RestAssured
-		.given().log().all()
+		String actualResponse=RestAssured
+		.given()
 		.when().get(baseUrl+resource)
-		.then().log().all().statusCode(200);
+		.then().extract().asString();
+		
+		System.out.println(actualResponse);
+		
+		System.out.println(actualResponse.contains("cat_007"));
 		
 //		RestAssured
 //		.when().get(baseUrl+resource)

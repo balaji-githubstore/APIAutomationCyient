@@ -1,4 +1,4 @@
-package com.cyient.apitest;
+package com.cyient.petapitest;
 
 import io.restassured.RestAssured;
 
@@ -8,8 +8,9 @@ public class GetFindPettByStatus {
 	public static void main(String[] args) {
 		
 		String resource="pet/findByStatus";
+		
 		RestAssured
-		.given().log().all().queryParam("status", "sold")
+		.given().queryParam("status", "sold")
 		.when().get(baseUrl+resource)
 		.then().log().all().statusCode(200);
 
